@@ -47,13 +47,6 @@ echo
 tar -czvf $COMPRESSED_FILE $FBBKP
 
 echo
-echo -------------------------------------------------------------------------------------------
-echo Removing file
-echo
-
-$RM $FBBKP
-
-echo
 echo ------------------------------------------------------------------------------------------ >> $FBBKP_LOGS
 echo Performing permission for $DATE_STAMP >> $FBBKP_LOGS
 echo ------------------------------------------------------------------------------------------ >> $FBBKP_LOGS
@@ -62,3 +55,9 @@ echo
 # Gives Permission
 $CHMOD -R 777 $COMPRESSED_FILE
 
+echo
+echo -------------------------------------------------------------------------------------------
+echo Removing file
+echo
+
+$RM $FBBKP
