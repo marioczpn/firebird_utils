@@ -53,6 +53,7 @@ echo ---------------------------------------------------------------------------
 echo 
 
 # Gives Permission
+$CHMOD -R 777 $FBBKP
 $CHMOD -R 777 $COMPRESSED_FILE
 
 echo
