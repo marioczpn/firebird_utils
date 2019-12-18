@@ -1,9 +1,10 @@
 #!/bin/bash
 #
-# This script was created to generate a backup of the database
-# Date: July/04 2014
+# This script was created to generate a backup of the database and compress it into tar.gz.
+# Date: December/18 2019
 #
 set -x
+
 # Initialise dynamic variables
 DATE=/bin/date
 DATE_STAMP=`$DATE +%d%m%Y%H%M%S`
@@ -13,10 +14,10 @@ FBBKP_LOGS="/var/log/backup/FACILITE-"$DATE_STAMP".log"
 # Command variables
 #
 CHMOD=/bin/chmod
+RM=/bin/rm -rf
 FIND=/usr/bin/find
 GBAK=/opt/firebird/bin/gbak
 FBDATABASE="localhost:/var/lib/firebird/2.5/data/FACILITE.FDB"
-#FBBKP="/home/administracao/database/bkp/FACILITE-$DATE_STAMP.FBK"
 BKPDIR="/home/administracao/database/tmp"
 FBBKP=$BKPDIR"/FACILITE-$DATE_STAMP.FBK"
 COMPRESSED_FILE=$FBBKP.tar.gz
@@ -42,13 +43,15 @@ echo
 echo -------------------------------------------------------------------------------------------
 echo Compressing file
 echo
+
 tar -czvf $COMPRESSED_FILE $FBBKP
 
 echo
 echo -------------------------------------------------------------------------------------------
 echo Removing file
 echo
-rm -rf $FBBKP
+
+$RM $FBBKP
 
 echo
 echo ------------------------------------------------------------------------------------------ >> $FBBKP_LOGS
