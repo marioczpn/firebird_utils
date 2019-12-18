@@ -18,7 +18,7 @@ RM=/bin/rm -rf
 FIND=/usr/bin/find
 GBAK=/opt/firebird/bin/gbak
 FBDATABASE="localhost:/var/lib/firebird/2.5/data/FACILITE.FDB"
-BKPDIR="/home/administracao/database/tmp"
+BKPDIR="/home/administracao/database/bkp"
 FBBKP=$BKPDIR"/FACILITE-$DATE_STAMP.FBK"
 COMPRESSED_FILE=$FBBKP.tar.gz
 
@@ -28,7 +28,7 @@ echo Performing delete for old backup $DATE_STAMP
 echo ------------------------------------------------------------------------------------------ >> $FBBKP_LOGS
 echo 
 
-find $BKPDIR*.FBK -mtime +10 -exec rm -rf {} \; >>$FBBKP_LOGS
+find $BKPDIR/*.tar.gz -mtime +10 -exec rm -rf {} \; 
 
 echo
 echo ------------------------------------------------------------------------------------------ >> $FBBKP_LOGS
@@ -53,12 +53,12 @@ echo ---------------------------------------------------------------------------
 echo 
 
 # Gives Permission
-$CHMOD -R 777 $FBBKP
-$CHMOD -R 777 $COMPRESSED_FILE
+sudo $CHMOD -R 777 $FBBKP
+sudo $CHMOD -R 777 $COMPRESSED_FILE
 
 echo
 echo -------------------------------------------------------------------------------------------
 echo Removing file
 echo
 
-$RM $FBBKP
+rm -rf $FBBKP
